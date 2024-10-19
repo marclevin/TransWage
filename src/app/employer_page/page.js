@@ -8,6 +8,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
 
 // Sample contract data (amounts can be customized for each contract)
 const requests = [
@@ -69,6 +74,31 @@ export function ScrollableListWithHeading({ onSelectBusiness }) {
 export default function Home() {
   // State to track the selected contract
   const [selectedBusiness, setSelectedBusiness] = React.useState(null);
+  // State to control the modal visibility
+  const [openModal, setOpenModal] = React.useState(false);
+  // State for the amount and wallet ID input
+  const [paymentAmount, setPaymentAmount] = React.useState('');
+  const [walletId, setWalletId] = React.useState('');
+
+  // Function to handle opening the modal
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  // Function to handle closing the modal
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setPaymentAmount(''); // Reset fields
+    setWalletId(''); // Reset fields
+  };
+
+  // Function to handle the form submission
+  const handleSubmitPayment = () => {
+    console.log('Payment Amount:', paymentAmount);
+    console.log('Wallet ID:', walletId);
+    // You can handle the payment logic here
+    handleCloseModal();
+  };
 
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
@@ -107,7 +137,7 @@ export default function Home() {
                 {/* Each payment request box */}
                 <Box sx={{
                 width: 200,
-                height: 200,
+                height: 100,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -120,20 +150,23 @@ export default function Home() {
 
                 <Box sx={{
                 width: 200,
-                height: 200,
+                height: 100,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'left',
+                paddingLeft: 2,
                 borderRadius: 2,
                 border: 2
                 }}>
-                <Typography variant="body1">Request 2</Typography>
+                <Typography variant="body1">
+                    Request 2
+                </Typography>
                 </Box>
 
                 <Box sx={{
                 width: 200,
-                height: 200,
+                height: 100,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -153,10 +186,10 @@ export default function Home() {
                 gap: 2,  // Adds some space between the buttons
             }}>
                 <Button variant="contained" color="primary">
-                Log Hours
+                    Log Hours
                 </Button>
-                <Button variant="contained" color="primary">
-                Make Payments
+                <Button variant="contained" color="primary" onClick={handleOpenModal}>
+                    Make Payments
                 </Button>
             </Box>
             </Box>
@@ -167,6 +200,34 @@ export default function Home() {
           </Typography>
         )}
       </Box>
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>Make Payment</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Amount"
+            type="number"
+            value={paymentAmount}
+            onChange={(e) => setPaymentAmount(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Wallet ID"
+            value={walletId}
+            onChange={(e) => setWalletId(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmitPayment} color="primary">
+            Submit Payment
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
