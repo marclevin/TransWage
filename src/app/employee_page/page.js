@@ -13,9 +13,9 @@ import Button from '@mui/material/Button';
 const contracts = [
   { id: 1, name: 'Contract 1', owed: 1000, paid: 500, empID: "ywuefycw234" },
   { id: 2, name: 'Contract 2', owed: 2000, paid: 1500, empID: "ywuefycw234" },
-  { id: 3, name: 'Contract 3', owed: 1500, paid: 1500, empID: "hweidfvcyibhi63" },
-  { id: 4, name: 'Contract 4', owed: 2500, paid: 1000, empID: "qlwehv723" },
-  { id: 5, name: 'Contract 5', owed: 3000, paid: 2500, empID: "qlwehv723" },
+  { id: 3, name: 'Contract 3', owed: 1500, paid: 1500, empID: "ywuefycw234" },
+  { id: 4, name: 'Contract 4', owed: 2500, paid: 1000, empID: "ywuefycw234" },
+  { id: 5, name: 'Contract 5', owed: 3000, paid: 2500, empID: "ywuefycw234" },
   // Add more contracts as needed
 ];
 
