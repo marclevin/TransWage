@@ -8,6 +8,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
 
 // Sample contract data (amounts can be customized for each contract)
 const contracts = [
@@ -65,6 +70,34 @@ export default function Home() {
   // State to track the selected contract
   const [selectedContract, setSelectedContract] = React.useState(null);
 
+  const [openModal, setOpenModal] = React.useState(false);
+
+  // State for form inputs (amount and wallet ID)
+  const [amount, setAmount] = React.useState('');
+  const [walletId, setWalletId] = React.useState('');
+
+  // Function to handle modal open
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  // Function to handle modal close
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setAmount('');
+    setWalletId('');
+  };
+
+  // Function to handle payment request submission
+  const handleRequestPayment = () => {
+    // You can handle the logic for the payment request here
+    console.log('Amount:', amount);
+    console.log('Wallet ID:', walletId);
+
+    // Close the modal after submitting
+    handleCloseModal();
+  };
+
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
       {/* Scrollable sidebar on the left */}
@@ -93,7 +126,7 @@ export default function Home() {
             </Typography>
 
             <Box sx={{ marginTop: 2, marginBottom: 5 }}>
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={handleOpenModal}>
                 Request Early Payment
               </Button>
             </Box>
@@ -109,6 +142,36 @@ export default function Home() {
           </Typography>
         )}
       </Box>
+
+      <Dialog open={openModal} onClose={handleCloseModal}>
+        <DialogTitle>Request Early Payment</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Amount"
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Wallet ID"
+            value={walletId}
+            onChange={(e) => setWalletId(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={handleRequestPayment} color="primary">
+            Submit Request
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </Box>
   );
 }
