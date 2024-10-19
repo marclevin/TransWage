@@ -101,13 +101,13 @@ export default function Home() {
             <Box sx={{
                 marginTop: 2,
                 display: 'flex',  // Align children horizontally
-                justifyContent: 'space-around',  // Space the boxes evenly
-                gap: 2,  // Adds some space between each box
+                justifyContent: 'left',  // Space the boxes evenly
+                gap: 5,  // Adds some space between each box
             }}>
                 {/* Each payment request box */}
                 <Box sx={{
-                width: 100,
-                height: 100,
+                width: 200,
+                height: 200,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -119,8 +119,8 @@ export default function Home() {
                 </Box>
 
                 <Box sx={{
-                width: 100,
-                height: 100,
+                width: 200,
+                height: 200,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -132,8 +132,8 @@ export default function Home() {
                 </Box>
 
                 <Box sx={{
-                width: 100,
-                height: 100,
+                width: 200,
+                height: 200,
                 bgcolor: 'white',
                 display: 'flex',
                 alignItems: 'center',
@@ -145,6 +145,19 @@ export default function Home() {
                 </Box>
 
                 {/* You can add more boxes as needed */}
+            </Box>
+            <Box sx={{
+                marginTop: 3,
+                display: 'flex',
+                justifyContent: 'left',  // Center the buttons horizontally
+                gap: 2,  // Adds some space between the buttons
+            }}>
+                <Button variant="contained" color="primary">
+                Log Hours
+                </Button>
+                <Button variant="contained" color="primary">
+                Make Payments
+                </Button>
             </Box>
             </Box>
           </>
