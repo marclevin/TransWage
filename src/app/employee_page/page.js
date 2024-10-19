@@ -7,15 +7,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material';
+import Button from '@mui/material/Button';
 
 // Sample contract data (amounts can be customized for each contract)
 const contracts = [
-  { id: 1, name: 'Contract 1', owed: 1000, paid: 500 },
-  { id: 2, name: 'Contract 2', owed: 2000, paid: 1500 },
-  { id: 3, name: 'Contract 3', owed: 1500, paid: 1500 },
-  { id: 4, name: 'Contract 4', owed: 2500, paid: 1000 },
-  { id: 5, name: 'Contract 5', owed: 3000, paid: 2500 },
+  { id: 1, name: 'Contract 1', owed: 1000, paid: 500, empID: "ywuefycw234" },
+  { id: 2, name: 'Contract 2', owed: 2000, paid: 1500, empID: "ywuefycw234" },
+  { id: 3, name: 'Contract 3', owed: 1500, paid: 1500, empID: "hweidfvcyibhi63" },
+  { id: 4, name: 'Contract 4', owed: 2500, paid: 1000, empID: "qlwehv723" },
+  { id: 5, name: 'Contract 5', owed: 3000, paid: 2500, empID: "qlwehv723" },
   // Add more contracts as needed
 ];
 
@@ -92,11 +92,15 @@ export default function Home() {
               <strong>Amount Paid:</strong> R{selectedContract.paid}
             </Typography>
 
-            {/* <Box sx={{ marginTop: 2 }}>
+            <Box sx={{ marginTop: 2, marginBottom: 5 }}>
               <Button variant="contained" color="primary">
                 Request Early Payment
               </Button>
-            </Box> */}
+            </Box>
+
+            <Typography variant="body1">
+              <strong>Employee ID</strong> {selectedContract.empID}
+            </Typography>
 
           </>
         ) : (
